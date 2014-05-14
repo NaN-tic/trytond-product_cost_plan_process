@@ -1,0 +1,39 @@
+# 
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "error:product.cost.plan:"
+msgid "A process already exists for cost plan \"%s\"."
+msgstr "Ya existe un proceso para el plan de costes de producto \"%s\"."
+
+msgctxt "field:product.cost.plan,process:"
+msgid "Process"
+msgstr "Proceso"
+
+msgctxt "field:product.cost.plan.create_process.start,id:"
+msgid "ID"
+msgstr "Identificador"
+
+msgctxt "field:product.cost.plan.create_process.start,name:"
+msgid "Name"
+msgstr "Nombre"
+
+msgctxt "model:ir.action,name:wizard_create_process"
+msgid "Create Process"
+msgstr "Crear proceso"
+
+msgctxt "model:product.cost.plan.create_process.start,name:"
+msgid "Create Process Start"
+msgstr "Inicio crear proceso"
+
+msgctxt "view:product.cost.plan.create_process.start:"
+msgid "Create Process"
+msgstr "Crear proceso"
+
+msgctxt "wizard_button:product.cost.plan.create_process,start,end:"
+msgid "Cancel"
+msgstr "Cancel·lar"
+
+msgctxt "wizard_button:product.cost.plan.create_process,start,process:"
+msgid "Ok"
+msgstr "Aceptar"

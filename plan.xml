@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tryton>
+    <data>
+
+        <record model="ir.ui.view" id="product_cost_plan_view_form">
+            <field name="model">product.cost.plan</field>
+            <field name="type">form</field>
+            <field name="name">cost_plan_form</field>
+            <field name="inherit"
+                ref="product_cost_plan.product_cost_plan_view_form"/>
+        </record>
+        <record model="ir.ui.view" id="product_cost_plan_view_list">
+            <field name="model">product.cost.plan</field>
+            <field name="type">tree</field>
+            <field name="name">cost_plan_list</field>
+            <field name="inherit"
+                ref="product_cost_plan.product_cost_plan_view_list"/>
+        </record>
+
+        <record model="ir.ui.view" id="create_process_start_view_form">
+            <field name="model">product.cost.plan.create_process.start</field>
+            <field name="type">form</field>
+            <field name="name">create_process_start_form</field>
+        </record>
+
+        <record model="ir.action.wizard" id="wizard_create_process">
+            <field name="name">Create Process</field>
+            <field name="wiz_name">product.cost.plan.create_process</field>
+        </record>
+        <record model="ir.action.keyword" id="act_create_process_keyword1">
+            <field name="keyword">form_action</field>
+            <field name="model">product.cost.plan,-1</field>
+            <field name="action" ref="wizard_create_process"/>
+        </record>
+        <record model="ir.action-res.group"
+                id="wizard_create_process-group_production_admin">
+            <field name="action" ref="wizard_create_process"/>
+            <field name="group" ref="production.group_production_admin"/>
+        </record>
+
+    </data>
+</tryton>
