@@ -31,6 +31,9 @@ class Plan:
         cls._error_messages.update({
                 'process_already_exists': ('A process already exists for cost '
                     'plan "%s".'),
+                'cannot_assign_process_to_product': ('Process "%(process)s" '
+                    'cannot be assigned to product "%(product)s" because no '
+                    'BOM relation exists.')
                 })
 
     def on_change_process(self):
@@ -70,6 +73,16 @@ class Plan:
         step.operations = route.operations
         step.save()
 
+        for product_bom in self.product.boms:
+            if product_bom.bom == bom and product_bom.route == route:
+                product_bom.process = process
+                product_bom.save()
+                break
+        else:
+            self.raise_user_error('cannot_assign_process_to_product', {
+                    'process': self.rec_name,
+                    'product': self.product.rec_name,
+                    })
         return process
 
 
