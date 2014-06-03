@@ -15,7 +15,7 @@ class Plan:
         domain=[
             ('uom', '=', Eval('uom'))
             ],
-        depends=['uom'], on_change=[])
+        depends=['uom'])
 
     @classmethod
     def __setup__(cls):
@@ -36,6 +36,7 @@ class Plan:
                     'BOM relation exists.')
                 })
 
+    @fields.depends('process')
     def on_change_process(self):
         res = {}
         if self.process:
