@@ -36,12 +36,13 @@ class Plan:
                     'BOM relation exists.')
                 })
 
-    @fields.depends('process')
+    @fields.depends('process', 'bom', 'boms')
     def on_change_process(self):
         res = {}
         if self.process:
             self.bom = self.process.bom
             res['bom'] = self.bom.id
+            res['boms'] = self.on_change_with_boms()
             self.route = self.process.route
             res['route'] = self.route.id
         return res
