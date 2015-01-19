@@ -36,6 +36,24 @@ class Plan:
                     'BOM relation exists.')
                 })
 
+    @fields.depends('process', methods=['process'])
+    def on_change_product(self):
+        res = {
+            'process': None,
+            'bom': None,
+            'boms': None,
+            'route': None,
+            }
+        res.update(super(Plan, self).on_change_product())
+        if self.product and self.product.boms:
+            for product_bom in self.product.boms:
+                if product_bom.process:
+                    self.process = product_bom.process
+                    res['process'] = product_bom.process.id
+                    res.update(self.on_change_process())
+                    break
+        return res
+
     @fields.depends('process', 'bom', 'boms')
     def on_change_process(self):
         res = {}
