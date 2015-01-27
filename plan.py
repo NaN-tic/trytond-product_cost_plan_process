@@ -69,6 +69,9 @@ class Plan:
         pool = Pool()
         Process = pool.get('production.process')
         Step = pool.get('production.process.step')
+
+        if not self.product:
+            self.raise_user_error('lacks_the_product', self.rec_name)
         if self.process:
             self.raise_user_error('process_already_exists', self.rec_name)
 
@@ -128,7 +131,7 @@ class CreateProcess(Wizard):
         CostPlan = Pool().get('product.cost.plan')
         plan = CostPlan(Transaction().context.get('active_id'))
         return {
-            'name': plan.product.rec_name,
+            'name': plan.rec_name,
             }
 
     def do_process(self, action):
