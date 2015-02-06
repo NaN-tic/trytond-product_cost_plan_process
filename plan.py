@@ -73,7 +73,8 @@ class Plan:
         if not self.product:
             self.raise_user_error('lacks_the_product', self.rec_name)
         if self.process:
-            self.raise_user_error('process_already_exists', self.rec_name)
+            self.raise_user_warning('process_already_exists%s' % self.id,
+                'process_already_exists', self.rec_name)
 
         bom = self.bom
         if not bom:
@@ -107,6 +108,15 @@ class Plan:
                     'product': self.product.rec_name,
                     })
         return process
+
+    @classmethod
+    def copy(cls, plans, default=None):
+        if default is None:
+            default = {}
+        else:
+            default = default.copy()
+        default['process'] = None
+        return super(Plan, cls).copy(plans, default=default)
 
 
 class CreateProcessStart(ModelView):
