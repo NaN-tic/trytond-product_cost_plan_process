@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from trytond.model import ModelView, fields
 from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval, Bool
@@ -140,8 +142,9 @@ class CreateProcess(Wizard):
     def default_start(self, fields):
         CostPlan = Pool().get('product.cost.plan')
         plan = CostPlan(Transaction().context.get('active_id'))
+        now = datetime.now()
         return {
-            'name': plan.rec_name,
+            'name': '%s (%s)' % (plan.rec_name, now.strftime('%d/%m/%Y')),
             }
 
     def do_process(self, action):
