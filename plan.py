@@ -40,32 +40,24 @@ class Plan:
 
     @fields.depends('process', methods=['process'])
     def on_change_product(self):
-        res = {
-            'process': None,
-            'bom': None,
-            'boms': None,
-            'route': None,
-            }
-        res.update(super(Plan, self).on_change_product())
+        self.process = None
+        self.bom = None
+        self.boms = None
+        self.route = None
+        super(Plan, self).on_change_product()
         if self.product and self.product.boms:
             for product_bom in self.product.boms:
                 if product_bom.process:
                     self.process = product_bom.process
-                    res['process'] = product_bom.process.id
-                    res.update(self.on_change_process())
+                    self.on_change_process()
                     break
-        return res
 
     @fields.depends('process', 'bom', 'boms')
     def on_change_process(self):
-        res = {}
         if self.process:
             self.bom = self.process.bom
-            res['bom'] = self.bom.id
-            res['boms'] = self.on_change_with_boms()
+            self.boms = self.on_change_with_boms()
             self.route = self.process.route
-            res['route'] = self.route.id
-        return res
 
     def create_process(self, name):
         pool = Pool()
