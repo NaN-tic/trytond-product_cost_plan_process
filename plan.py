@@ -84,7 +84,7 @@ class Plan:
 
         route = self.route
         if not route:
-            route = self.create_route(name)
+            route = self.create_route(name, bom=bom)
 
         process = Process(name=name, uom=self.uom)
         process.bom = bom
