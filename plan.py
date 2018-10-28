@@ -38,7 +38,7 @@ class Plan:
                     'BOM relation exists.')
                 })
 
-    @fields.depends('process', methods=['process'])
+    @fields.depends('process', methods=['on_change_process'])
     def on_change_product(self):
         self.process = None
         self.bom = None
