@@ -53,11 +53,21 @@ class Plan(metaclass=PoolMeta):
 
     @fields.depends('process', 'bom', 'boms')
     def on_change_process(self):
+        BomLine = Pool().get('product.cost.plan.bom_line')
+        to_delete = []
         if self.process:
+            if self.boms:
+                to_delete = [x.id for x in self.boms]
             self.bom = self.process.bom
-            self.boms = self.on_change_with_boms()
+            self.boms = []
             self.route = self.process.route
+            boms = []
+            for i,x in self.on_change_with_boms()['add']:
+                boms.append(BomLine(product = x['product'], bom=x['bom']))
+            self.boms=boms
 
+        if to_delete:
+            BomLine.delete(to_delete)
     def create_process(self, name):
         pool = Pool()
         Process = pool.get('production.process')
