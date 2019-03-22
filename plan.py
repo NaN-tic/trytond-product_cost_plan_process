@@ -5,6 +5,8 @@ from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval, Bool
 from trytond.transaction import Transaction
 from trytond.wizard import Wizard, StateView, StateAction, Button
+from trytond.i18n import gettext
+from trytond.exceptions import UserWarning, UserError
 
 __all__ = ['Plan', 'CreateProcessStart', 'CreateProcess']
 
@@ -29,13 +31,6 @@ class Plan(metaclass=PoolMeta):
                 'readonly': Bool(Eval('process')),
                 })
         cls.route.depends.append('process')
-        cls._error_messages.update({
-                'process_already_exists': ('A process already exists for cost '
-                    'plan "%s".'),
-                'cannot_assign_process_to_product': ('Process "%(process)s" '
-                    'cannot be assigned to product "%(product)s" because no '
-                    'BOM relation exists.')
-                })
 
     @fields.depends('process', methods=['on_change_process'])
     def on_change_product(self):
@@ -74,10 +69,12 @@ class Plan(metaclass=PoolMeta):
         Step = pool.get('production.process.step')
 
         if not self.product:
-            self.raise_user_error('lacks_the_product', self.rec_name)
+            raise UserError(gettext('product_cost_plan.lacks_the_product',
+                    cost_plan=self.rec_name))
         if self.process:
-            self.raise_user_warning('process_already_exists%s' % self.id,
-                'process_already_exists', self.rec_name)
+            raise UserWarning('process_already_exists%s' % self.id,
+                gettext('product_cost_plan.process_already_exists',
+                    cost_plan=self.rec_name))
 
         bom = self.bom
         if not bom:
@@ -106,10 +103,9 @@ class Plan(metaclass=PoolMeta):
                 product_bom.save()
                 break
         else:
-            self.raise_user_error('cannot_assign_process_to_product', {
-                    'process': self.rec_name,
-                    'product': self.product.rec_name,
-                    })
+            raise UserError(gettext(
+                    'product_cost_plan_proccess.cannot_assign_process_to_product',
+                    process=self.rec_name, product=self.product.rec_name))
         return process
 
     @classmethod
