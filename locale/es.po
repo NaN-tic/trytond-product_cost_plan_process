@@ -1,18 +1,6 @@
-# 
+#
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
-
-msgctxt "error:product.cost.plan:"
-msgid "A process already exists for cost plan \"%s\"."
-msgstr "Ya existe un proceso para el plan de costes de producto \"%s\"."
-
-msgctxt "error:product.cost.plan:"
-msgid ""
-"Process \"%(process)s\" cannot be assigned to product \"%(product)s\" "
-"because no BOM relation exists."
-msgstr ""
-"El proceso \"%(process)s\" no se puede asignar al producto \"%(product)s\" "
-"porque no tiene ninguna LdM associada."
 
 msgctxt "field:product.cost.plan,process:"
 msgid "Process"
@@ -20,7 +8,7 @@ msgstr "Proceso"
 
 msgctxt "field:product.cost.plan.create_process.start,id:"
 msgid "ID"
-msgstr "Identificador"
+msgstr "ID"
 
 msgctxt "field:product.cost.plan.create_process.start,name:"
 msgid "Name"
@@ -29,6 +17,18 @@ msgstr "Nombre"
 msgctxt "model:ir.action,name:wizard_create_process"
 msgid "Create Process"
 msgstr "Crear proceso"
+
+msgctxt "model:ir.message,text:cannot_assign_process_to_product"
+msgid ""
+"Process \"%(process)s\" cannot be assigned to product \"%(product)s\" "
+"because no BOM relation exists."
+msgstr ""
+"El proceso \"%(process)s\" no se puede asignar al producto \"%(product)s\" "
+"porque no existe una relación con una lista de materiales."
+
+msgctxt "model:ir.message,text:process_already_exists"
+msgid "A process already exists for cost plan \"%s\"."
+msgstr "Ya existe un proceso para el plan de costes \"%s\"."
 
 msgctxt "model:product.cost.plan.create_process.start,name:"
 msgid "Create Process Start"
