@@ -69,12 +69,14 @@ class Plan(metaclass=PoolMeta):
         pool = Pool()
         Process = pool.get('production.process')
         Step = pool.get('production.process.step')
+        Warning = pool.get('res.user.warning')
 
         if not self.product:
             raise UserError(gettext('product_cost_plan.lacks_the_product',
                     cost_plan=self.rec_name))
-        if self.process:
-            raise UserWarning('process_already_exists%s' % self.id,
+        key = 'process_already_exists%s' % self.id
+        if self.process and Warning.check(key):
+            raise UserWarning(key,
                 gettext('product_cost_plan.process_already_exists',
                     cost_plan=self.rec_name))
 
