@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- This file is part of Tryton.  The COPYRIGHT file at the top level of
+this repository contains the full copyright notices and license terms. -->
 <tryton>
     <data>
 
         <record model="ir.ui.view" id="product_cost_plan_view_form">
             <field name="model">product.cost.plan</field>
-            <field name="type" eval="None"/>
             <field name="inherit"
                 ref="product_cost_plan.product_cost_plan_view_form"/>
             <field name="name">cost_plan_form</field>
         </record>
         <record model="ir.ui.view" id="product_cost_plan_view_list">
             <field name="model">product.cost.plan</field>
-            <field name="type" eval="None"/>
             <field name="inherit"
                 ref="product_cost_plan.product_cost_plan_view_list"/>
             <field name="name">cost_plan_list</field>
