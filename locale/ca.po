@@ -6,10 +6,6 @@ msgctxt "field:product.cost.plan,process:"
 msgid "Process"
 msgstr "Procés"
 
-msgctxt "field:product.cost.plan.create_process.start,id:"
-msgid "ID"
-msgstr "ID"
-
 msgctxt "field:product.cost.plan.create_process.start,name:"
 msgid "Name"
 msgstr "Nom"
