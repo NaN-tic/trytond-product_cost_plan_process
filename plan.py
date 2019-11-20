@@ -23,6 +23,7 @@ class Plan(metaclass=PoolMeta):
     @classmethod
     def __setup__(cls):
         super(Plan, cls).__setup__()
+        cls.product.domain += [('producible', '=', True)]
         cls.bom.states.update({
                 'readonly': Bool(Eval('process')),
                 })
