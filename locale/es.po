@@ -36,7 +36,7 @@ msgstr "Crear proceso"
 
 msgctxt "wizard_button:product.cost.plan.create_process,start,end:"
 msgid "Cancel"
-msgstr "Cancel·lar"
+msgstr "Cancelar"
 
 msgctxt "wizard_button:product.cost.plan.create_process,start,process:"
 msgid "Ok"
