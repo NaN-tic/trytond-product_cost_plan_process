@@ -3,10 +3,10 @@
 this repository contains the full copyright notices and license terms. -->
 <tryton>
     <data grouped="1">
-        <record model="ir.message" id="process_already_exists">
+        <record model="ir.message" id="msg_process_already_exists">
             <field name="text">A process already exists for cost plan "%s".</field>
         </record>
-        <record model="ir.message" id="cannot_assign_process_to_product">
+        <record model="ir.message" id="msg_cannot_assign_process_to_product">
             <field name="text">Process "%(process)s" cannot be assigned to product "%(product)s" because no BOM relation exists.</field>
         </record>
     </data>

@@ -14,7 +14,7 @@ msgctxt "model:ir.action,name:wizard_create_process"
 msgid "Create Process"
 msgstr "Crear proceso"
 
-msgctxt "model:ir.message,text:cannot_assign_process_to_product"
+msgctxt "model:ir.message,text:msg_cannot_assign_process_to_product"
 msgid ""
 "Process \"%(process)s\" cannot be assigned to product \"%(product)s\" "
 "because no BOM relation exists."
@@ -22,7 +22,7 @@ msgstr ""
 "El proceso \"%(process)s\" no se puede asignar al producto \"%(product)s\" "
 "porque no existe una relación con una lista de materiales."
 
-msgctxt "model:ir.message,text:process_already_exists"
+msgctxt "model:ir.message,text:msg_process_already_exists"
 msgid "A process already exists for cost plan \"%s\"."
 msgstr "Ya existe un proceso para el plan de costes \"%s\"."
 
