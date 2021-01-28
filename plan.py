@@ -78,7 +78,7 @@ class Plan(metaclass=PoolMeta):
         key = 'process_already_exists%s' % self.id
         if self.process and Warning.check(key):
             raise UserWarning(key,
-                gettext('product_cost_plan.process_already_exists',
+                gettext('product_cost_plan_process.msg_process_already_exists',
                     cost_plan=self.rec_name))
 
         bom = self.bom
@@ -109,7 +109,7 @@ class Plan(metaclass=PoolMeta):
                 break
         else:
             raise UserError(gettext(
-                    'product_cost_plan_proccess.cannot_assign_process_to_product',
+                    'product_cost_plan_proccess.msg_cannot_assign_process_to_product',
                     process=self.rec_name, product=self.product.rec_name))
         return process
 
