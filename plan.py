@@ -47,7 +47,7 @@ class Plan(metaclass=PoolMeta):
                     self.on_change_process()
                     break
 
-    @fields.depends('process', 'bom', 'boms')
+    @fields.depends('process', 'bom', 'boms', methods=['on_change_with_boms'])
     def on_change_process(self):
         BomLine = Pool().get('product.cost.plan.bom_line')
         to_delete = []
