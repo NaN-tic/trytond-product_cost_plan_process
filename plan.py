@@ -58,7 +58,7 @@ class Plan(metaclass=PoolMeta):
             self.boms = []
             self.route = self.process.route
             boms = []
-            for i, x in self.on_change_with_boms()['add']:
+            for i, x in self.on_change_with_boms().get('add', []):
                 boms.append(BomLine(product=x['product'], bom=x['bom']))
             self.boms = boms
 
