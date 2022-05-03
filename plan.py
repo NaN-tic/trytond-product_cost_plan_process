@@ -27,11 +27,11 @@ class Plan(metaclass=PoolMeta):
         cls.bom.states.update({
                 'readonly': Bool(Eval('process')),
                 })
-        cls.bom.depends.append('process')
+        cls.bom.depends.add('process')
         cls.route.states.update({
                 'readonly': Bool(Eval('process')),
                 })
-        cls.route.depends.append('process')
+        cls.route.depends.add('process')
 
     @fields.depends('process', methods=['on_change_process'])
     def on_change_product(self):
