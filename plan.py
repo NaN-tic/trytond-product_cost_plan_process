@@ -53,7 +53,7 @@ class Plan(metaclass=PoolMeta):
         to_delete = []
         if self.process:
             if self.boms:
-                to_delete = [x.id for x in self.boms]
+                to_delete = self.boms
             self.bom = self.process.bom
             self.boms = []
             self.route = self.process.route
