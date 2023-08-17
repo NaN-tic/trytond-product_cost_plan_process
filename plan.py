@@ -57,10 +57,7 @@ class Plan(metaclass=PoolMeta):
             self.bom = self.process.bom
             self.boms = []
             self.route = self.process.route
-            boms = []
-            for i, x in self.on_change_with_boms().get('add', []):
-                boms.append(BomLine(product=x['product'], bom=x['bom']))
-            self.boms = boms
+            self.boms = self.on_change_with_boms()
 
         if to_delete:
             with Transaction().new_transaction(autocommit=True, readonly=False):
