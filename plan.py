@@ -106,7 +106,7 @@ class Plan(metaclass=PoolMeta):
                 break
         else:
             raise UserError(gettext(
-                    'product_cost_plan_proccess.msg_cannot_assign_process_to_product',
+                    'product_cost_plan_process.msg_cannot_assign_process_to_product',
                     process=self.rec_name, product=self.product.rec_name))
         return process
 
