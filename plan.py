@@ -139,20 +139,20 @@ class CreateProcess(Wizard):
     process = StateAction('production_process.act_production_process')
 
     def default_start(self, fields):
-        CostPlan = Pool().get('product.cost.plan')
-        plan = CostPlan(Transaction().context.get('active_id'))
-        now = datetime.now()
-        return {
-            'name': '%s (%s)' % (plan.rec_name, now.strftime('%d/%m/%Y')),
-            }
+        if self.record:
+            now = datetime.now()
+            return {
+                'name': '%s (%s)' % (self.record.rec_name or '', now.strftime('%d/%m/%Y')),
+                }
+        return {}
 
     def do_process(self, action):
-        pool = Pool()
-        CostPlan = pool.get('product.cost.plan')
-        plan = CostPlan(Transaction().context.get('active_id'))
-        process = plan.create_process(self.start.name)
-        data = {
-            'res_id': [process.id],
-            }
-        action['views'].reverse()
-        return action, data
+        if self.record:
+            process = self.record.create_process(self.start.name)
+            data = {
+                'res_id': [process.id],
+                }
+            action['views'].reverse()
+            return action, data
+        else:
+            return 'end'
