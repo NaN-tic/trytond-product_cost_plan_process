@@ -17,8 +17,7 @@ class Plan(metaclass=PoolMeta):
     process = fields.Many2One('production.process', 'Process',
         domain=[
             ('uom', '=', Eval('uom'))
-            ],
-        depends=['uom'])
+            ])
 
     @classmethod
     def __setup__(cls):
